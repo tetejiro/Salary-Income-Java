@@ -4,7 +4,6 @@ import com.java.salary_income.application.controller.PostRequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SalaryEntityFactory {
 

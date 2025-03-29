@@ -9,14 +9,11 @@ import org.springframework.stereotype.Service;
 public class CalculateService {
 
     private final CalculateRepository calculateRepository;
-    private final SalaryEntityFactory salaryEntityFactory;
 
     public CalculateService(
-        CalculateRepository calculateRepository,
-        SalaryEntityFactory salaryEntityFactory
+        CalculateRepository calculateRepository
     ) {
         this.calculateRepository = calculateRepository;
-        this.salaryEntityFactory = salaryEntityFactory;
     }
 
     public float getYearlySalary() {
@@ -24,6 +21,6 @@ public class CalculateService {
     }
 
     public void post(PostRequestBody postRequestBody) {
-        calculateRepository.post(salaryEntityFactory.create(postRequestBody));
+        calculateRepository.post(new SalaryEntityFactory().create(postRequestBody));
     }
 }
