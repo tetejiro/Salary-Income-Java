@@ -9,7 +9,9 @@ public record SalaryInfoEntity(
     List<SalaryInfo> salaryInfo
 ) {
     public record SalaryInfo (
+        int year,
         int month,
-        int salary
+        int salary,
+        int cost
     ) {}
 }

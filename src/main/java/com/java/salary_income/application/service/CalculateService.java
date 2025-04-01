@@ -16,7 +16,7 @@ public class CalculateService {
         this.calculateRepository = calculateRepository;
     }
 
-    public float getYearlySalary() {
+    public int getYearlySalary() {
         return calculateRepository.getYearlySalary();
     }
 

@@ -1,6 +1,10 @@
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/demo_db?useAffectedRows=true&useUnicode=true&characterEncoding=utf8&serverTimezone=SERVER&allowMultiQueries=true
-#    username: root
-#    password: password
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/salary_income
+    username: root
+    password: ${db_password}
+
+  jackson:
+    parser:
+      allow-unquoted-field-names: true
