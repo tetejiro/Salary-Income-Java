@@ -13,8 +13,13 @@ public class CalculateController{
 
     // curl 'http://localhost:8080/year-income'
     @GetMapping({"/year-income", "/year-income/"})
-    public int get() {
+    public int getIncome() {
         return calculateService.getYearlySalary();
+    }
+
+    @GetMapping({"/year-net-income", "/year-net-income/"})
+    public int getNetIncome() {
+        return 1;
     }
 
     // curl.exe -X POST -H "Content-Type: application/json" -d '{salaryInfo: [{year: 2025, month:1, salary:269818}, {year: 2025, month:3, salary:279931}]}' localhost:8080/year-income
