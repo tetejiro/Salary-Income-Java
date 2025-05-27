@@ -4,11 +4,23 @@ import com.java.salary_income.domain.entity.SalaryInfoEntity;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
 @Mapper
 public interface CalculateMapper {
+
+    @Update("""
+        UPDATE
+            SALARY_INFO
+        SET
+            month = #{month},
+            amount = #{amount}
+        WHERE
+            userId = #{userId}
+    """)
+    int update(int month, int amount, int userId);
 
     @Select("""
         SELECT
@@ -17,6 +29,16 @@ public interface CalculateMapper {
             SALARY_INFO
     """)
     List<SalaryInfoEntity.SalaryInfo> get();
+
+    @Select("""
+        SELECT
+            *
+        FROM
+            SALARY_INFO
+        WHERE
+            MONTH = #{month}
+    """)
+    SalaryInfoEntity.SalaryInfo getTest(int month);
 
     @Insert("""
         <script>

@@ -1,7 +1,10 @@
 package com.java.salary_income.application.service;
 
 import com.java.salary_income.application.controller.PostRequestBody;
-import com.java.salary_income.domain.entity.SalaryEntityFactory;
+import com.java.salary_income.application.controller.UpdateRequestBody;
+import com.java.salary_income.domain.factory.SalaryEntityFactory;
+import com.java.salary_income.domain.entity.SalaryInfoEntity;
+import com.java.salary_income.domain.factory.UpdateEntityFactory;
 import com.java.salary_income.domain.repository.CalculateRepository;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +23,17 @@ public class CalculateService {
         return calculateRepository.getYearlySalary();
     }
 
+    public SalaryInfoEntity.SalaryInfo getTest(int month) {
+        return calculateRepository.getTest(month);
+    }
+
     public void post(PostRequestBody postRequestBody) {
         calculateRepository.post(new SalaryEntityFactory().create(postRequestBody));
+    }
+
+    public void update(UpdateRequestBody updateRequestBody) {
+        if (calculateRepository.update(new UpdateEntityFactory().create(updateRequestBody))) {
+            throw new RuntimeException("AAAAAAAAAAAA");
+        };
     }
 }

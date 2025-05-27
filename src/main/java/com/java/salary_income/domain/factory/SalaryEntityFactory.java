@@ -1,6 +1,7 @@
-package com.java.salary_income.domain.entity;
+package com.java.salary_income.domain.factory;
 
 import com.java.salary_income.application.controller.PostRequestBody;
+import com.java.salary_income.domain.entity.SalaryInfoEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;

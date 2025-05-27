@@ -1,6 +1,7 @@
 package com.java.salary_income.application.controller;
 
 import com.java.salary_income.application.service.CalculateService;
+import com.java.salary_income.domain.entity.SalaryInfoEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,6 +18,11 @@ public class CalculateController{
         return calculateService.getYearlySalary();
     }
 
+    @GetMapping({"/test/{month}"})
+    public SalaryInfoEntity.SalaryInfo getTest(@PathVariable("month") int month) {
+        return calculateService.getTest(month);
+    };
+
     @GetMapping({"/year-net-income", "/year-net-income/"})
     public int getNetIncome() {
         return 1;
@@ -26,5 +32,10 @@ public class CalculateController{
     @RequestMapping(value = {"/year-income", "/year-income/"}, method = RequestMethod.POST)
     public void post(@RequestBody PostRequestBody postRequestBody) {
         calculateService.post(postRequestBody);
+    }
+
+    @PostMapping("/update")
+    public void update(@RequestBody UpdateRequestBody updateRequestBody) {
+
     }
 }
