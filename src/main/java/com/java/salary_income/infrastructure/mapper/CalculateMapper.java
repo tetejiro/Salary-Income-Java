@@ -11,44 +11,51 @@ import java.util.List;
 @Mapper
 public interface CalculateMapper {
 
-    @Update("""
-        UPDATE
-            SALARY_INFO
-        SET
-            month = #{month},
-            amount = #{amount}
-        WHERE
-            userId = #{userId}
-    """)
-    int update(int month, int amount, int userId);
-
     @Select("""
         SELECT
-            YEAR, MONTH, SALARY, COSTS
-        FROM
-            SALARY_INFO
-    """)
-    List<SalaryInfoEntity.SalaryInfo> get();
-
-    @Select("""
-        SELECT
-            *
+            SUM(gross_pay)
         FROM
             SALARY_INFO
         WHERE
+            YEAR = #{year}
+    """)
+    Integer getYearSalary(int year);
+
+    @Select("""
+        SELECT
+            year,
+            month,
+            gross_pay,
+            deduction
+        FROM
+            SALARY_INFO
+        WHERE
+            year = #{year}
+        AND
             MONTH = #{month}
     """)
-    SalaryInfoEntity.SalaryInfo getTest(int month);
+    SalaryInfoEntity.Content getMonthSalary(int year, int month);
 
     @Insert("""
         <script>
             INSERT INTO
-                SALARY_INFO (YEAR, MONTH, SALARY, COSTS)
+                SALARY_INFO (year, month, gross_pay, deduction)
             VALUES
-                <foreach item="info" index="salaryInfo.month" collection="list" open="(" separator="),(" close=")">
-                    #{info.year}, #{info.month}, #{info.salary}, #{info.costs}
+                <foreach collection="contents" item="info" open="(" separator="),(" close=")">
+                    #{info.year}, #{info.month}, #{info.grossPay}, #{info.deduction}
                 </foreach>
         </script>
     """)
-    void post(List<SalaryInfoEntity.SalaryInfo> salaryInfo);
+    void post(List<SalaryInfoEntity.Content> contents);
+
+    @Update("""
+        UPDATE
+            salary_info
+        SET
+            year = #{year},
+            month = #{month},
+            gross_pay = #{grossPay},
+            deduction = #{deduction}
+    """)
+    int update(int year, int month, int grossPay, int deduction);
 }

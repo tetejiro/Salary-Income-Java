@@ -14,8 +14,10 @@ public class UpdateEntity {
 
     @Data
     @Builder
-    public class Content {
+    public static class Content {
+        public int year;
         public int month;
-        public int amount;
+        public int grossPay;
+        public int deduction;
     }
 }

@@ -9,10 +9,12 @@ import java.util.stream.Collectors;
 public class SalaryEntityFactory {
 
     public SalaryInfoEntity create(PostRequestBody postRequestBody) {
-        List<SalaryInfoEntity.SalaryInfo> salaryInfo = postRequestBody.salaryInfo().stream().map(it ->
-            new SalaryInfoEntity.SalaryInfo(it.year(), it.month(), it.salary(), it.cost())
+        List<SalaryInfoEntity.Content> salaryInfo = postRequestBody.salaryInfo().stream().map(it ->
+            new SalaryInfoEntity.Content(it.year(), it.month(), it.grossPay(), it.deduction())
         ).collect(Collectors.toList());
 
-        return new SalaryInfoEntity(salaryInfo);
+        return SalaryInfoEntity.builder()
+                .salaryInfo(salaryInfo)
+                .build();
     }
 }

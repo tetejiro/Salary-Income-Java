@@ -10,12 +10,13 @@ import java.util.List;
 public class UpdateRequestBody {
 
     int userId;
-    List<UpdateRequestBody.Content> requestBodies;
+    List<Content> requestBodies;
 
     @Data
-    @Builder
     public class Content {
+        public int year;
         public int month;
-        public int amount;
+        public int grossPay; // 総支給額（交通費は除く）
+        public int deduction; // 控除額
     }
 }

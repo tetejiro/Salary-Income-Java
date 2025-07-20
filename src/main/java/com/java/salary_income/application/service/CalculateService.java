@@ -8,6 +8,8 @@ import com.java.salary_income.domain.factory.UpdateEntityFactory;
 import com.java.salary_income.domain.repository.CalculateRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.YearMonth;
+
 @Service
 public class CalculateService {
 
@@ -19,12 +21,12 @@ public class CalculateService {
         this.calculateRepository = calculateRepository;
     }
 
-    public int getYearlySalary() {
-        return calculateRepository.getYearlySalary();
+    public int getYearlySalary(int year) {
+        return calculateRepository.getYearlySalary(year);
     }
 
-    public SalaryInfoEntity.SalaryInfo getTest(int month) {
-        return calculateRepository.getTest(month);
+    public SalaryInfoEntity.Content getMonthSalary(YearMonth yearMonth) {
+        return calculateRepository.getMonthSalary(yearMonth);
     }
 
     public void post(PostRequestBody postRequestBody) {

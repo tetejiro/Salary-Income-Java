@@ -5,15 +5,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public record PostRequestBody(
-        List<SalaryInfo> salaryInfo
+        List<Content> salaryInfo
 ) {
-    public record SalaryInfo (
+    public record Content (
         @NotNull
-        Integer year,
+        int year,
         @NotNull
-        Integer month,
+        int month,
         @NotNull
-        Integer salary,
-        int cost
+        int grossPay, // 総支給額
+        int deduction // 控除額
     ) {}
 }
